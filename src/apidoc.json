@@ -1,0 +1,12 @@
+{
+  "name": "InblockKMS Api documentation",
+  "version": "1.0.0",
+  "description": "Documentation for the REST api access provided at Inblock KMS",
+  "title": "Inblock KMS",
+  "url" : "https://wallet.metacoin.network",
+  "template": {
+    "withCompare": true,
+    "withGenerator": true,
+    "aloneDisplay": false
+  }
+}

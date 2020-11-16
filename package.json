@@ -1,0 +1,25 @@
+{
+  "name": "InblockKMS",
+  "version": "1.0.0",
+  "description": "Inblock Key Management System",
+  "main": "src/inblock_kms.js",
+  "scripts": {
+    "start": "node src/inblock_kms.js"
+  },
+  "author": "Inblock developer team",
+  "keywords": [
+    "Inblock",
+    "Metacoin",
+    "KMS"
+  ],
+  "dependencies": {
+    "axios": "^0.20.0",
+    "body-parser": "^1.19.0",
+    "crc": "^3.8.0",
+    "express": "^4.17.1",
+    "level-rocksdb": "^4.0.0",
+    "multer": "^1.4.2",
+    "promise": "^8.1.0",
+    "ip-range-check": "^0.2.0"
+  }
+}

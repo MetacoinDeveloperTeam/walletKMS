@@ -1,0 +1,4 @@
+{
+	"DB_PATH": "db",
+	"LISTEN_PORT": 10210
+}
