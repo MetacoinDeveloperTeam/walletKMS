@@ -1,5 +1,5 @@
 {
-  "name": "InblockKMS",
+  "name": "inblock-kms",
   "version": "1.0.0",
   "description": "Inblock Key Management System",
   "main": "src/index.js",
