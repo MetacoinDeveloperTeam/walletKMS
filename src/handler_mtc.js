@@ -15,7 +15,7 @@ const axios_config = {
 };
 
 
-const handler = class {
+class handler {
     constructor(config) {
         this.db = config.db;
         this.post_address_mtc = this.post_address_mtc.bind(this);
@@ -159,7 +159,7 @@ const handler = class {
 
             let addr_data = JSON.parse(db_data);
             if (addr_data.address != req.body.address) {
-                throw new Error('Address id not match');
+                throw new Error('Address not match');
             }
             const sign = crypto.createSign('SHA256');
             sign.write(req.body.data);
@@ -226,4 +226,4 @@ const handler = class {
     }
 }
 
-module.exports.handler = handler;
+module.exports = handler;

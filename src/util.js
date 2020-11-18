@@ -48,11 +48,9 @@ class ErrorSign extends Error {
     }
 }
 
-
 function errorACL(msg) {
     return new ErrorACL(msg);
 }
-
 
 function errorInit(msg) {
     return new ErrorInit(msg);
@@ -272,25 +270,24 @@ const ts_check = (window, timestamp) => {
     }
     return true;
 }
+module.exports = {
+    db_putnx,
+    db_put,
+    db_key_exists,
 
-module.exports.db_putnx = db_putnx;
-module.exports.db_put = db_put;
-module.exports.db_key_exists = db_key_exists;
+    send_error,
+    send_success,
 
-module.exports.send_error = send_error;
-module.exports.send_success = send_success;
-module.exports.key_type_check = key_type_check;
+    key_type_check,
+    sign_check,
+    ts_check,
 
-module.exports.NumberPadding = NumberPadding;
-module.exports.ParameterCheck = ParameterCheck;
+    NumberPadding,
+    ParameterCheck,
+    isNormalInteger,
+    getRandomString,
 
-module.exports.isNormalInteger = isNormalInteger;
-module.exports.getRandomString = getRandomString;
-
-module.exports.sign_check = sign_check;
-module.exports.ts_check = ts_check;
-
-
-module.exports.errorACL = errorACL;
-module.exports.errorInit = errorInit;
-module.exports.errorNotFound = errorNotFound;
+    errorACL,
+    errorInit,
+    errorNotFound
+};

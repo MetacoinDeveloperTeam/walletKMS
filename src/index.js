@@ -49,10 +49,10 @@ db.open();
 
 config.db = db;
 
-const request_handler_company = new handler_company.handler(config);
-const request_handler_key = new handler_key.handler(config);
-const request_handler_mtc = new handler_mtc.handler(config);
-const request_handler = new handler.handler(config);
+const request_handler_company = new handler_company(config);
+const request_handler_key = new handler_key(config);
+const request_handler_mtc = new handler_mtc(config);
+const request_handler = new handler(config);
 
 /**
  * @api {post} /v1/init register admin

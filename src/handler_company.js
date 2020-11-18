@@ -8,7 +8,7 @@ const ipcheck = require('ip-range-check')
 const STATUS_NORMAL = 10;
 
 
-const handler = class {
+class handler {
     constructor(config) {
         this.db = config.db;
 
@@ -134,4 +134,4 @@ const handler = class {
     }
 }
 
-module.exports.handler = handler;
+module.exports = handler;

@@ -4,7 +4,7 @@
 
 const util = require("./util")
 
-const handler = class {
+class handler {
     constructor(config) {
         this.db = config.db;
         this.post_init = this.post_init.bind(this)
@@ -42,4 +42,4 @@ const handler = class {
 
 }
 
-module.exports.handler = handler;
+module.exports = handler;
