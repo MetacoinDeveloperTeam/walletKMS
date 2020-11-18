@@ -365,7 +365,7 @@ const handler = class {
                 if (ipcheck(req.ip, company_data.ip) != true) {
                     return Promise.reject("The IP is not allowed access");
                 } else {
-                    return util.sign_check(db, '', [req.body.company_id, req.body.network, req.body.ts].join("|"), req.body.sign, company_data.public_key)
+                    return util.sign_check(db, '', [req.body.company_id, req.body.key_id, req.body.text, req.body.ts].join("|"), req.body.sign, company_data.public_key)
                 }
             })
             .catch((err) => {
@@ -410,7 +410,7 @@ const handler = class {
                 if (ipcheck(req.ip, company_data.ip) != true) {
                     return Promise.reject("The IP is not allowed access");
                 } else {
-                    return util.sign_check(db, '', [req.body.company_id, req.body.network, req.body.ts].join("|"), req.body.sign, company_data.public_key)
+                    return util.sign_check(db, '', [req.body.company_id, req.body.key_id, req.body.enc_text, req.body.ts].join("|"), req.body.sign, company_data.public_key)
                 }
             })
             .catch((err) => {
