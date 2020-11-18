@@ -7,7 +7,14 @@ const app_title = "Inblock KMS";
 
 const config = require('./config.json');
 const util = require("./util");
+const rocks = require('level-rocksdb')
+
+
+const handler_company = require("./handler_company");
+const handler_key = require("./handler_key");
+const handler_mtc = require("./handler_mtc");
 const handler = require("./handler");
+
 console.log(app_title + " " + app_ver);
 
 const http = require('http');
@@ -35,6 +42,16 @@ app.use(function (req, res, next) {
 app.disable('x-powered-by');
 
 
+const db = rocks(config.DB_PATH, {
+    createIfMissing: true
+});
+db.open();
+
+config.db = db;
+
+const request_handler_company = new handler_company.handler(config);
+const request_handler_key = new handler_key.handler(config);
+const request_handler_mtc = new handler_mtc.handler(config);
 const request_handler = new handler.handler(config);
 
 /**
@@ -75,7 +92,7 @@ app.post('/v1/init', upload.array(), request_handler.post_init);
  * @apiError  {String} data Empty string
  * @apiError  {String} msg Error message
  */
-app.post('/v1/company', upload.array(), request_handler.post_company);
+app.post('/v1/company', upload.array(), request_handler_company.post_company);
 
 /**
  * @api {put} /v1/init modify company
@@ -96,22 +113,25 @@ app.post('/v1/company', upload.array(), request_handler.post_company);
  * @apiError  {String} data Empty string
  * @apiError  {String} msg Error message
  */
-app.put('/v1/company', upload.array(), request_handler.put_company);
+app.put('/v1/company', upload.array(), request_handler_company.put_company);
 
 // make new address
-app.post('/v1/address/mtc', upload.array(), request_handler.post_address_mtc);
+app.post('/v1/address/mtc', upload.array(), request_handler_mtc.post_address_mtc);
 
 // data signing
-app.post('/v1/sign/mtc', upload.array(), request_handler.post_sign_mtc);
+app.post('/v1/sign/mtc', upload.array(), request_handler_mtc.post_sign_mtc);
+
+// metacoin key & address save
+app.post('/v1/import/mtc', upload.array(), request_handler_mtc.post_import_mtc);
 
 // kms data generate
-app.post('/v1/key', upload.array(), request_handler.post_key);
+app.post('/v1/key', upload.array(), request_handler_key.post_key);
 
 // kms data generate
-app.post('/v1/enc', upload.array(), request_handler.post_enc);
+app.post('/v1/enc', upload.array(), request_handler_key.post_enc);
 
 // kms data generate
-app.post('/v1/dec', upload.array(), request_handler.post_dec);
+app.post('/v1/dec', upload.array(), request_handler_key.post_dec);
 
 
 // undefine path handler
@@ -119,14 +139,7 @@ app.all('*', function (request, response) {
     response.send(404, 'Request not find');
 });
 
-
 app.use(function (error, req, res, next) {
-    console.log(new Date().toTimeString(), req.remoteAddress, '\t', req.method, '\t', req.url);
-    if (error.isParamError) {
-        console.log(error);
-    } else {
-        console.log(error);
-    }
     util.send_error(res, error);
 });
 
@@ -135,6 +148,5 @@ try {
         console.log(app_title + ' listening on port ' + config.LISTEN_PORT);
     });
 } catch (err) {
-    console.log(err)
     console.error(app_title + ' port ' + listen_port + ' bind error');
 }
