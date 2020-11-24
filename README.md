@@ -50,7 +50,7 @@ INBLOCK is pleased to offer the Wallet service which solves the security threat 
 
 ---
 
-# This program is safe when running in the HPVS environment of LinuxOne as shown below, and additional encryption implementation is required in other environments.
+# This program is safe when running in the HPVS environment of LinuxONE as shown below, and additional encryption implementation is required in other environments.
 
 - Adding the registry to HPVS
 ```shell
