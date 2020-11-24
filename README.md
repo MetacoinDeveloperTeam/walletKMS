@@ -17,9 +17,13 @@ There is the way to encrypt the internal data with Hardware Security Module(HSM)
 But This Unencrypted data
 
 ![Without encryption](https://miro.medium.com/max/875/1*Bw7KNjIH3T8g3zhg0mLcSg.png)
+
 or
+
 ![Encryption in Application](https://miro.medium.com/max/875/1*OPLjEL-TMMlEzCtx32NhjQ.png)
+
 to
+
 ![Using HSM](https://miro.medium.com/max/875/0*JyOfHsPaps-E4Zco.png)
 
 has to modify the previously developed application, and it depends on developers whether the data is securely encrypted or Key is well managed.
